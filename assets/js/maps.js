@@ -1,5 +1,6 @@
         
         var APIKey = "AIzaSyBo12wRAtpFdRyk2HpMS2t8BQbacQUmDOs"
+        
         function initMap() {
             const map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 6, 
@@ -18,16 +19,27 @@
                 ];
 
             var markers = locations.map(function(location, i) {
-                return new google.maps.Marker({
+                const marker = new google.maps.Marker({
                     position: location,
                   label: labels[i % labels.length], 
                   map: map,
             });
-            });
-            /* Add markerClusterer to the map  - not working 25/09/23*/    
-            var markerClusterer = markerClusterer(map, markers,
-            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
             
+            /* Add a listener to each marker */
+             // markers can only be keyboard focusable when they have click listeners
+            // open info window when marker is clicked
+            marker.addListener("click", () => {
+            infoWindow.setContent(position.lat + ", " + position.lng);
+            infoWindow.open(map, marker);
+            });
+            return marker
+            });
+
+            /* Add markerClusterer to the map  - not working 25/09/23*/    
+            //new markerClusterer(markers, map, 
+            //{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+            //
         }
+        initMap();
     
     
