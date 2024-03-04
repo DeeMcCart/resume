@@ -12,14 +12,34 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Deirdre McCarthy AllSkills Tech</title>
 <!-- Emailjs link -->
-<script type="text/javascript"
-src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
-</script>
-<script type="text/javascript">
-(function(){
-emailjs.init("nJIzMgsyYaZu0gOHX");
-emailjs.sendForm("Gmail", "AllSkills_website", {name: "James", notes:"The project that I want is - "});
-})();
+    <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+    (function(){
+    emailjs.init("nJIzMgsyYaZu0gOHX");
+    })();
+    </script>
+
+     <script type="text/javascript">
+        // CONTACT FORM - content below from emailjs:
+        window.onload = function() {
+            const btn = document.getElementById('contact-button');
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            btn.innerHTML = 'Sending...';      
+            //emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, this)
+            emailjs.sendForm('service_l3pogah', 'template_o3nf7pt', this)
+                .then(() => {
+                    btn.innerHTML = 'Email Sent';
+                    alert('Thank you for your enquiry to AllSkills Tech, you should receive an acknowledgement email in the next few minutes...');
+                }, (err) => {
+                    btn.innerHTML = 'Send Email';
+                    alert(JSON.stringify(err));
+                });
+            });
+        }
 </script>
 </head>
 
@@ -74,9 +94,9 @@ emailjs.sendForm("Gmail", "AllSkills_website", {name: "James", notes:"The projec
                 <h3 class="contact-heading uppercase text-center">Got a project in mind?</h3>
                 <h5 class="uppercase text-center">Let's work together!</h5>
                 <div class="center-form">
-                    <form>
-                        <input type="text" name="name" id="fullname" class="form-control" placeholder="Name" required />
-                        <input type="text" name="email" id="emailaddress" class="form-control" placeholder="Email"
+                    <form id="contact-form">
+                        <input type="text" name="user_name" id="fullname" class="form-control" placeholder="Name" required />
+                        <input type="text" name="user_email" id="emailaddress" class="form-control" placeholder="Email"
                             required />
                         <textarea rows="5" name="projectsummary" id="projectsummary" class="form-control"
                             placeholder="Project description" required></textarea>
@@ -86,11 +106,11 @@ emailjs.sendForm("Gmail", "AllSkills_website", {name: "James", notes:"The projec
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
+                </div> <!--  end class center-form mt-0 -->
+            </div> <!-- end class col -->
+        </div> <!-- end class "row bg-color-contact" -->
 
-    </section>
+    </section> <!-- ed section container-fluid -->
     <footer class="container-fluid">
 
 
